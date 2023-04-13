@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Poppins:wght@500&display=swap");
+
+.container-card:hover {
+  box-shadow: 1px 2px 9px 0 rgb(0 0 0 / 30%);
+}
+
+.container-card {
+  margin: 0 5px 5px 0;
+}
+
+.card-img-top {}
+
+.buy {
+  margin-left: 10px;
+}
+
+.text-warning {
+  margin-top: -15px;
+}
+
+.container-cart {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.image-cart {}
+
+.detail-cart {
+  padding-left: 20px;
+  width: 100%;
+}
+
+.price-cart {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete {
+  border: none;
+  background-color: #fff;
+}
+
+.totals,
+.buy-now {
+  text-align: center;
+  border-top: 1px solid gray;
+}
+
+.total-item {
+  padding: 20px 0;
+}
+
+.total-title {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.buy-now-item {
+  padding-top: 20px;
+}
+
+.view-cart {
+  border: none;
+  background-color: #ff4f04;
+  color: #fff;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.view-cart:hover {
+  background-color: #f46d34;
+}
