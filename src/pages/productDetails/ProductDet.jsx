@@ -197,7 +197,7 @@ function ProductDet(props) {
                 <a className="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Có thể bạn cũng thích</a>
               </ul>
               <div className="suggested-product-item">
-                {suggestedProduct.map((item) => <Suggested key={item.id} price={item.price} name={item.name} id={item.id} thumbnail={item.thumbnail} />)}
+                {suggestedProduct.map((suggested) => <Suggested key={suggested.id} price={suggested.price} name={suggested.name} id={suggested.id} thumbnail={suggested.thumbnail} />)}
               </div>
 
             </div>
@@ -208,7 +208,7 @@ function ProductDet(props) {
 
       <Drawer title="Giỏ hàng" placement="right" onClose={onClose} open={open}>
         {productInCart.map((productInCart) => (
-          <div key={productInCart}>
+          <div key={productInCart.id}>
             <div className="container-cart">
               <div className="image-cart">
                 <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/99333efb-45c8-4590-be0f-d7f336a8aef4/structure-24-road-running-shoes-9wCgmv.png" alt="" width={70} />
