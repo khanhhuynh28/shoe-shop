@@ -16,23 +16,26 @@
   z-index: 999;
   position: fixed;
 }
-.headermargin{
+
+.headermargin {
   margin-top: 136px;
 }
+
 .upper__header {
   width: 100%;
-  
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-      
+
 }
 
 .logo {
   width: 4rem;
   height: 4rem;
 }
+
 .main__search__bar__wrapper {
   width: 40%;
   display: flex;
@@ -44,6 +47,7 @@
   border-radius: 3px;
   height: 2.5rem;
 }
+
 .main__search__bar {
   width: 93%;
   border: none;
@@ -51,12 +55,15 @@
   font-family: Poppins;
   padding-left: 1rem;
 }
+
 ::placeholder {
   font-weight: lighter;
 }
+
 .search__icon {
   font-size: 1.2rem;
 }
+
 input:focus {
   outline: none;
 }
@@ -65,13 +72,16 @@ input:focus {
   display: flex;
   position: relative;
 }
+
 .shopping__cart__icon {
   font-size: 1.5rem;
 }
+
 .shopping__cart__icon:hover {
   opacity: 0.6;
   cursor: pointer;
 }
+
 .cart__counter {
   background-color: red;
   height: 1rem;
@@ -88,11 +98,16 @@ input:focus {
 }
 
 .login__btn {
-  width: 10rem;
+  width: auto;
   height: 3rem;
   border-radius: 5px;
   border: none;
   color: white;
   background-color: #ff4f04;
   font-size: 1.1rem;
+  padding: 0 5px;
+}
+
+.logout {
+  margin-left: 5px;
 }

@@ -31,7 +31,7 @@ export default function NavigationMenu() {
     ]
     return (
         <ul className="naviagtion__menu">
-            <li><a href="http://localhost:3000/" className="home__selected">home</a></li>
+            <li><Link to={"/"} className="home__selected">home</Link></li>
             {Menu.map((item) => (
                 <li key={item} onClick={() => filterCategory(item.category)}>{item.shoeType}</li>
             ))}

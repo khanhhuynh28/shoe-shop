@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import TopFilter from './Top/TopFilter';
 
 import Products from './displayProducts/Products';
@@ -6,31 +6,36 @@ import HomeLanding from '../components/Home/home';
 import Ad from '../components/Ad/Ad';
 
 export default function Home() {
-  // state = {
-  //   selectedCategory: 0,
-  //   priceRange: 0,
-  // };
+  const [showGoToTop, setShowGoToTop] = useState(false);
 
-  // handleChangePrice = (e) => {
-  //   this.setState({ priceRange: e.target.value });
-  // }
-  // handleChangeCategory = (e) => {
-  //   this.setState({ selectedCategory: e.target.value });
-  // }
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowGoToTop(window.scrollY >= 500);
+    }
 
+    window.addEventListener('scroll', handleScroll);
 
-  // const { changeCart, inputSearch } = this.props;
-  // const { selectedCategory, priceRange } = this.state;
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div>
       <HomeLanding />
       <TopFilter
-      //  handleChangePrice={this.handleChangePrice} handleChangeCategory={this.handleChangeCategory}
       />
       <Products
-      // selectedCategory={selectedCategory} priceRange={priceRange} inputSearch={inputSearch} changeCart={changeCart} 
       />
       <Ad />
+
+      {showGoToTop && (
+        <button style={{
+          position: 'fixed',
+          right: 20,
+          bottom: 20
+        }}>go to top</button>
+      )}
     </div>
   );
 }

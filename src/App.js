@@ -64,8 +64,8 @@ function App() {
         <Route path={"/order-success"} element={<OrderSuccess />} />
         <Route path={"/notfound"} component={NotFound} />
       </Routes>
-
       <CombinedFooter />
+
 
     </>
   );

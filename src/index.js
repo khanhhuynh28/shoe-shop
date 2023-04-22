@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import { store } from './stores';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+document.title = "Shoe Store";
+  
 root.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -16,6 +18,7 @@ root.render(
       </Provider>
     </BrowserRouter>
   </React.StrictMode>
+
 );
 
 // If you want to start measuring performance in your app, pass a function

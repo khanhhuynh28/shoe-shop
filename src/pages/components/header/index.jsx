@@ -3,11 +3,9 @@ import Logo from "./upperHeader/Logo";
 import SearchBar from "./upperHeader/SearchBar";
 import CartIcon from "./upperHeader/CartIcon";
 import LoginButton from "./upperHeader/LoginButton";
-import Dropdwon from "./downHeader/Dropdown";
 import NavigationMenu from "./downHeader/NavigationMenu";
 import "./upperHeader/upperHeader.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProductList } from "../../../stores/action/product.action";
+import Dropdown from "./downHeader/Dropdown";
 
 const Header = () => {
 
@@ -22,7 +20,6 @@ const Header = () => {
           <LoginButton />
         </div>
         <div className="down__header">
-          <Dropdwon />
           <NavigationMenu />
         </div>
       </div>

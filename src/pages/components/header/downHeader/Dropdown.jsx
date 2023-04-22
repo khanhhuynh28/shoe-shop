@@ -5,7 +5,7 @@ import { faBars, faSortDesc } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductList } from "../../../../stores/action/product.action";
 
-export default function Dropdwon(props) {
+export default function Dropdown(props) {
 
   const [valueSort, setValueSort] = useState('');
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export default function Dropdwon(props) {
         defaultValue={null}
         onChange={(e) => setValueSort(e.target.value)}
       >
-        <option className="category__options" value="">Chọn danh mục</option>
+        <option className="category__options" value="">Chọn Giá</option>
         <option className="category__options" value="asc">Giá Tăng Dần</option>
         <option className="category__options" value="desc">Giá Giảm Dần</option>
       </select>

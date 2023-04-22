@@ -1,34 +1,34 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./upperHeader.css";
-// import {Link} from 'react-router-dom'
-
 export default function LoginButton(props) {
-  const deleteLocalHandler = () => {
-    localStorage.removeItem("loggedIn");
-  };
-  const username = useSelector(state => state.auth.user)
+  const [isLogin] = useState(() => {
+    const useName = JSON.parse(localStorage.getItem('login'));
+    return useName;
+  })
 
-  const loggedIn = props.isLoggedIn
+  const deleteLocalHandler = () => {
+    localStorage.removeItem("login");
+  };
 
   return (
     <>
-      {/* {!loggedIn ? ( */}
       {
-        !username ? (
+        !isLogin ? (
           <Link to={"/login"}>
             <button type="button" className="login__btn" >Đăng nhập</button>
           </Link>
 
-        ) : <button className="login__btn" >{username.nickname}</button>
+        ) : (isLogin?.map((acc, index) =>
+          <div key={index}>
+            <button className="login__btn" >{acc.email.split("@")[0]}</button>
+            <a href="/"><button className="login__btn logout" onClick={deleteLocalHandler}>Đăng Xuất</button></a>
+          </div>
+        )
+        )
+
       }
 
-      {/* // ) : (
-      //   <a href="/" >
-      //     <input type="button" value="Logout" className="login__btn" />
-      //   </a>
-      // )} */}
     </>
   );
 }

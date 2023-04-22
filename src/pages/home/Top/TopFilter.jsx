@@ -1,18 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import Dropdwon from '../../components/header/downHeader/Dropdown';
 import './style.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductList } from '../../../stores/action/product.action';
+import { Button, Dropdown, Select, Space } from 'antd';
+import { DownOutlined } from '@ant-design/icons'
 
 export default function TopFilter() {
-  // const { handleChangePrice, handleChangeCategory } = this.props;
+
   return (
     <div className='trend-with-filter'>
-      <Dropdwon options={['Chọn danh mục', 'Men', 'Women']} />
+
+      <Dropdwon />
+
       <div className='pHeader'>
         <p>SẢN PHẨM HÀNG ĐẦU</p>
         <h1>XU HƯỚNG TUẦN NÀY</h1>
       </div>
-      <Dropdwon options={['Chọn theo giá', '100<', '100 - 200', '200>']} />
 
+      <Dropdwon />
     </div>
   )
 }

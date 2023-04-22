@@ -5,7 +5,9 @@ export const loginAction = createAsyncThunk(
     'auth/login',
 
     async (payload) => {
+
         const response = await authApi.login(payload);
+
         return response.data;
     }
 );

@@ -13,20 +13,18 @@ function Cart(props) {
   const productInCart = useSelector(state => state.cart.cart);
   const [itemCount, setItemCount] = useState(productInCart.map(() => 1));
   const dispatch = useDispatch();
-  const [userInfor, setUserInfor] = useState({
+  const [userInfo, setUserInfo] = useState({
     username: "",
     phone: "",
     address: ""
   });
   const handleChangeUserInfor = (e) => {
     const { value, name } = e.target;
-    setUserInfor({
-      ...userInfor,
+    setUserInfo({
+      ...userInfo,
       [name]: value,
     });
   };
-
-
 
   const handleDecrease = (index) => {
     if (itemCount[index] > 1) {
@@ -42,41 +40,6 @@ function Cart(props) {
     setItemCount(newCount);
   };
 
-  // const [cart, setCart] = useState({
-  //   product: []
-  // })
-  // state = {
-  //   products: []
-  // }
-
-
-  // componentDidMount() {
-  //   this.setState({ products: JSON.parse(localStorage.getItem('products')) })
-  // }
-
-  // deleteFromCart = (id) => {
-  //   const { products } = cart
-  //   const filtered = products.filter(ele => ele.id !== id)
-  //   setCart({ products: filtered })
-  //   // localStorage.setItem('products', JSON.stringify(filtered))
-  // }
-
-  // removeallCart = () => {
-  //   setCart({ products: [] })
-  //   localStorage.setItem('products', JSON.stringify([]))
-  // }
-  // const products = JSON.parse(localStorage.getItem('products')) || [];
-  // const { products } = this.state
-  // const result = products.map((product) => (
-
-  // ))
-
-  // const prices = products.map(product => {
-  //   return +product.price;
-  // });
-
-  // const totalPrice = prices.reduce((acc, curr) => acc + curr, 0);
-
   const totals = productInCart.reduce((item, product, index) => {
     const total = product.price * itemCount[index];
 
@@ -84,11 +47,6 @@ function Cart(props) {
   }, 0)
   console.log(totals.total)
   const totalPayments = totals;
-  // const price = productInCart.reduce((item, product, index) => {
-  //   const price = item.price * itemCount[index];
-  //   return price
-  // }, 0)
-
 
 
   const layout = {
@@ -103,7 +61,8 @@ function Cart(props) {
   const validateMessages = {
     required: 'Vui lòng nhập ${label}!',
   };
-  const { username, phone, address } = userInfor;
+  const { username, phone, address } = userInfo;
+
   const handleChangeOrder = () => {
     dispatch(orderAction(
       {
@@ -115,8 +74,8 @@ function Cart(props) {
           return {
             id: item.id,
             name: item.name,
-            color: item.color,
-            size: item.size,
+            colors: item.colors,
+            checkSize: item.checkSize,
             price: item.price,
             brand: item.brand,
             category: item.category,
@@ -156,15 +115,15 @@ function Cart(props) {
           {
             productInCart.map((product, index) => (
               <>
-                <div key={product}>
+                <div key={product.id}>
 
                   <div className="content__order">
                     <div > <img className="img__product" src={product.thumbnail} alt="product" /></div>
                     <div className="tools">
                       <div className="product__name__description">
                         <p>{product.name}</p>
-                        <p className="product__description">Màu sắc:  {product.color}</p>
-                        <p className="product__description">Kích cỡ: {product.size}</p>
+                        <p className="product__description">Màu sắc:  {product.colors}</p>
+                        <p className="product__description">Kích cỡ: {product.checkSize}</p>
                       </div>
                       <div className="tools2">
                         <div className="btnnnn">

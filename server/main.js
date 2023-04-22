@@ -24,6 +24,6 @@ server.use((req, res, next) => {
 
 server.use("/api/auth", auth)
 server.use("/api", router)
-server.listen(3003, () => {
+server.listen(3001, () => {
     console.log('JSON Server is running')
 })

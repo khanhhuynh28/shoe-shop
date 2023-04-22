@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import { Link, Navigate } from "react-router-dom";
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBContainer, MDBIcon, MDBInput, MDBRow } from "mdb-react-ui-kit";
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import { Button, Checkbox, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
@@ -13,10 +13,9 @@ function LoginForm(props) {
     email: "",
     password: "",
   })
-  const [login, setLogin] = useState({
-    login: "login"
-  })
+
   if (user) return <Navigate to={"/"} />
+
   const handleChangeLogin = (e) => {
     const { value, name } = e.target;
     setFormLogin({
@@ -27,26 +26,19 @@ function LoginForm(props) {
 
   const { email, password } = formLogin;
   const onFinish = () => {
-
     dispatch(
       loginAction({
         email: email,
         password: password
       })
     )
-  };
-  // const navigate = useNavigate();
+    const newForm = [formLogin]
+    const setLocalStorageLogin = JSON.stringify(newForm)
+    localStorage.setItem('login', setLocalStorageLogin)
+    return setLocalStorageLogin
 
-
-
-  const localHandler = (boolean) => {
-    const { handleLoggedIn } = props;
-    handleLoggedIn(boolean);
-    localStorage.setItem("loggedIn", boolean);
   };
 
-
-  const localBoolean = localStorage.getItem("loggedIn");
   return (
     <>
       <div className="container-login">
@@ -121,7 +113,7 @@ function LoginForm(props) {
                         <Button htmlType="submit" className="login-form-button">
                           Đăng nhập
                         </Button>
-                        Hoặc <a href="http://localhost:3000/register">Đăng ký!</a>
+                        Hoặc <Link to={"/register"}>Đăng ký!</Link>
                       </Form.Item>
                     </Form>
 

@@ -1,35 +1,35 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./product.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Drawer, Radio, Rate } from "antd";
 import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { addItemToCart } from "../../stores/slice/cart.slice";
 import { buyProduct, deleteProduct } from "../../stores/action/cart.action";
+import Suggested from "./suggested/Suggested";
 
 function ProductDet(props) {
   const [options, setOptions] = useState({
     index: 0
   });
   const [productDetail, setProductDetail] = useState([]);
-  const [count, setCount] = useState({});
   const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
   const { id } = useParams();
-  const [size, setSize] = useState([]);
-  const [color, setColor] = useState([]);
+  const [checkSize, setCheckSize] = useState([]);
+  const [colors, setColors] = useState("");
   const productInCart = useSelector(state => state.cart.cart);
+  const suggestedProduct = useSelector(state => state.product.product);
+
 
   const handleSizeChange = (event) => {
-    setSize(event.target.value);
+    const sizes = event.target.value
+    const newSizes = checkSize.includes(sizes)
+      ? checkSize.filter(item => item !== sizes)
+      : [sizes];
+    setCheckSize(newSizes);
 
   }
-  const handleColorChange = (event) => {
-    setColor(event.target.value);
-  }
+
   const showDrawer = () => {
     setOpen(true);
     props.buyProduct(product_current)
@@ -39,17 +39,19 @@ function ProductDet(props) {
   };
   const product_current = productDetail.map(({ id, price, thumbnail, name, rating }) => (
     {
-      id, price, thumbnail, name, color, size, rating
+      id, price, thumbnail, name, colors, checkSize, rating
     }
   ))[0];
 
   async function fetchData() {
-    const response = await axios.get(`http://localhost:3003/api/products/${id}`)
+    const response = await axios.get(`http://localhost:3001/api/products/${id}`)
     setProductDetail([response.data]);
   }
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
+
+
 
   const handleChangeImage = (index) => {
     setOptions({ index: index });
@@ -64,9 +66,9 @@ function ProductDet(props) {
   return (
     <>
       <div className="container">
-        {productDetail?.map((product, index) => (
+        {productDetail?.map((product) => (
           <>
-            <div key={index} className="row">
+            <div key={product.id} className="row">
               <div className="col-md-6">
                 <div id="slider" className="owl-carousel product-slider">
 
@@ -77,7 +79,7 @@ function ProductDet(props) {
                   ))}
                   <div id="thumb" className="owl-carousel product-thumb">
                     {product.options?.map((item, index) => (
-                      <div key={index} className="item">
+                      <div key={item} className="item">
                         <img className="images" src={item} onClick={() => handleChangeImage(index)} />
                       </div>
                     ))}
@@ -102,24 +104,34 @@ function ProductDet(props) {
                   <div className="row">
 
 
-                    <div className="col-md-3" >
+                    <div className="col-md-12" >
                       <label >Size:</label>
-                      <select onChange={handleSizeChange} className="select size" >
-                        <option value="size">size</option>
+                      <Radio.Group className="container-select-size" onChange={handleSizeChange} >
                         {product.size.map((size) => (
-                          <option key={size} value={size} >{size}</option>
+                          <Radio.Button className="select-size" key={size} value={size} checked={checkSize.includes(size)} >{size}</Radio.Button>
                         ))}
-                      </select>
+                      </Radio.Group>
+
                     </div>
 
-                    <div className="col-md-4">
+                    <div className="col-md-12" style={{ marginTop: 20 }}>
                       <label >Color:</label>
-                      <select onChange={handleColorChange} className="select" >
-                        <option value="color">color</option>
+
+                      <div className="container-select-color" >
                         {product.color.map((color) => (
-                          <option key={color} value={color} >{color}</option>
+                          <button
+                            className="select-color"
+                            key={color}
+                            onClick={() => setColors(color)}
+                            style={colors === color ? {
+                              backgroundColor: color,
+
+                            } : {}}
+                          >
+
+                          </button>
                         ))}
-                      </select>
+                      </div>
                     </div>
 
                   </div>
@@ -179,37 +191,41 @@ function ProductDet(props) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div >
             <div className="product-info-tabs">
               <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <a className="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Có thể bạn cũng thích</a>
               </ul>
+              <div className="suggested-product-item">
+                {suggestedProduct.map((item) => <Suggested key={item.id} price={item.price} name={item.name} id={item.id} thumbnail={item.thumbnail} />)}
+              </div>
+
             </div>
           </>
         ))}
-      </div>
+      </div >
 
 
       <Drawer title="Giỏ hàng" placement="right" onClose={onClose} open={open}>
-        {productInCart.map((item, index) => (
-          <div key={index}>
+        {productInCart.map((productInCart) => (
+          <div key={productInCart}>
             <div className="container-cart">
               <div className="image-cart">
                 <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/99333efb-45c8-4590-be0f-d7f336a8aef4/structure-24-road-running-shoes-9wCgmv.png" alt="" width={70} />
               </div>
               <div className="detail-cart">
-                <span className="product-name">{item.name}</span>
+                <span className="product-name">{productInCart.name}</span>
                 <li>
                   <span>Kích cỡ: </span>
-                  <span>{item.size}</span>
+                  <span>{checkSize}</span>
                 </li>
                 <li>
                   <span>Màu sắc: </span>
-                  <span>{item.color}</span>
+                  <span>{colors}</span>
                 </li>
                 <div className="price-cart">
-                  <span><b>{item.price.toLocaleString()}đ</b></span>
-                  <span><button className="delete" onClick={() => props.deleteProduct(item)}><DeleteOutlined /></button></span>
+                  <span><b>{productInCart.price.toLocaleString()}đ</b></span>
+                  <span><button className="delete" onClick={() => props.deleteProduct(productInCart)}><DeleteOutlined /></button></span>
                 </div>
               </div>
             </div>
