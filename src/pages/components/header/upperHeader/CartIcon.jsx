@@ -12,7 +12,6 @@ export default function CartIcon(props) {
         <FontAwesomeIcon
           className="shopping__cart__icon"
           icon={faShoppingCart}
-
         />
         <div className="cart__counter">{props.itemsOfCart}</div>
       </div>

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
-import "./product.css";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Drawer, Radio, Rate } from "antd";
 import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { buyProduct, deleteProduct } from "../../stores/action/cart.action";
 import Suggested from "./suggested/Suggested";
+import Tab from "./tabs/Tab";
+import leftArrow from '../../assets/left-arrow.png'
+import rightArrow from '../../assets/right-arrow.png'
+import "./product.css";
 
 function ProductDet(props) {
   const [options, setOptions] = useState({
@@ -18,8 +21,7 @@ function ProductDet(props) {
   const [checkSize, setCheckSize] = useState([]);
   const [colors, setColors] = useState("");
   const productInCart = useSelector(state => state.cart.cart);
-  const suggestedProduct = useSelector(state => state.product.product);
-
+  const containerRef = useRef(null);
 
   const handleSizeChange = (event) => {
     const sizes = event.target.value
@@ -27,16 +29,21 @@ function ProductDet(props) {
       ? checkSize.filter(item => item !== sizes)
       : [sizes];
     setCheckSize(newSizes);
-
   }
 
   const showDrawer = () => {
-    setOpen(true);
-    props.buyProduct(product_current)
+    if (colors && checkSize) {
+      setOpen(true);
+      props.buyProduct(product_current)
+    } else {
+      alert('hãy chọn kích cỡ và màu sắc')
+    }
   };
+
   const onClose = () => {
     setOpen(false);
   };
+
   const product_current = productDetail.map(({ id, price, thumbnail, name, rating }) => (
     {
       id, price, thumbnail, name, colors, checkSize, rating
@@ -47,11 +54,11 @@ function ProductDet(props) {
     const response = await axios.get(`http://localhost:3001/api/products/${id}`)
     setProductDetail([response.data]);
   }
+
   useEffect(() => {
     fetchData();
+    window.scrollTo(0, 0);
   }, [id]);
-
-
 
   const handleChangeImage = (index) => {
     setOptions({ index: index });
@@ -62,7 +69,22 @@ function ProductDet(props) {
     return price;
   }, 0)
 
+  const scrollLeft = () => {
+    containerRef.current.scrollBy({
+      left: -270,
+      behavior: 'smooth',
+    });
+  };
+
+  const scrollRight = () => {
+    containerRef.current.scrollBy({
+      left: 270,
+      behavior: 'smooth',
+    });
+  };
+
   const star = () => <Rate disabled defaultValue={product_current.rating} />
+
   return (
     <>
       <div className="container">
@@ -71,19 +93,17 @@ function ProductDet(props) {
             <div key={product.id} className="row">
               <div className="col-md-6">
                 <div id="slider" className="owl-carousel product-slider">
-
                   {product.options?.map((img, index) => (
                     <div key={img} className="items">
-                      {index === options.index && <img className="productimg" src={img} />}
+                      {index === options.index && <img className="productimg" alt="" src={img} />}
                     </div>
                   ))}
                   <div id="thumb" className="owl-carousel product-thumb">
                     {product.options?.map((item, index) => (
                       <div key={item} className="item">
-                        <img className="images" src={item} onClick={() => handleChangeImage(index)} />
+                        <img className="images" alt="" src={item} onClick={() => handleChangeImage(index)} />
                       </div>
                     ))}
-
                   </div>
                 </div>
               </div>
@@ -102,8 +122,6 @@ function ProductDet(props) {
                   </div>
                   <p>{product.description}</p>
                   <div className="row">
-
-
                     <div className="col-md-12" >
                       <label >Size:</label>
                       <Radio.Group className="container-select-size" onChange={handleSizeChange} >
@@ -111,12 +129,9 @@ function ProductDet(props) {
                           <Radio.Button className="select-size" key={size} value={size} checked={checkSize.includes(size)} >{size}</Radio.Button>
                         ))}
                       </Radio.Group>
-
                     </div>
-
                     <div className="col-md-12" style={{ marginTop: 20 }}>
                       <label >Color:</label>
-
                       <div className="container-select-color" >
                         {product.color.map((color) => (
                           <button
@@ -125,19 +140,17 @@ function ProductDet(props) {
                             onClick={() => setColors(color)}
                             style={colors === color ? {
                               backgroundColor: color,
-
-                            } : {}}
+                              border: '2px solid red'
+                            } : { backgroundColor: color }}
                           >
-
                           </button>
                         ))}
                       </div>
                     </div>
-
                   </div>
                   <div className="product-count">
                     <button onClick={showDrawer} className="round-black-btn buy" > <ShoppingCartOutlined /></button>
-                    <Link to={"/cart"}><button className="round-black-btn buy" onClick={() => props.buyProduct(product_current)}>Mua Ngay</button></Link>
+                    <Link to={"/cart"}><button className="round-black-btn buy" onClick={() => colors && checkSize ? props.buyProduct(product_current) : alert('hãy chọn kích cỡ và màu sắc')}>Mua Ngay</button></Link>
                   </div>
                 </div>
                 <div className="product-policy">
@@ -192,26 +205,33 @@ function ProductDet(props) {
                 </div>
               </div>
             </div >
+            <div className="tab-detail">
+              <Tab />
+            </div>
             <div className="product-info-tabs">
               <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <a className="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Có thể bạn cũng thích</a>
               </ul>
-              <div className="suggested-product-item">
-                {suggestedProduct.map((suggested) => <Suggested key={suggested.id} price={suggested.price} name={suggested.name} id={suggested.id} thumbnail={suggested.thumbnail} />)}
+              <div className="suggested-product">
+                <div className="suggested-product-item" ref={containerRef}>
+                  <Suggested category={product.category}
+                  />
+                </div>
+                <div className="scroll-suggested">
+                  <button className="scroll-left-button" onClick={scrollLeft}><img src={leftArrow} alt="" width={30} /></button>
+                  <button className="scroll-right-button" onClick={scrollRight}><img src={rightArrow} alt="" width={30} /></button>
+                </div>
               </div>
-
             </div>
           </>
         ))}
       </div >
-
-
       <Drawer title="Giỏ hàng" placement="right" onClose={onClose} open={open}>
         {productInCart.map((productInCart) => (
           <div key={productInCart.id}>
             <div className="container-cart">
               <div className="image-cart">
-                <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/99333efb-45c8-4590-be0f-d7f336a8aef4/structure-24-road-running-shoes-9wCgmv.png" alt="" width={70} />
+                <img src={productInCart.thumbnail} alt="" width={70} />
               </div>
               <div className="detail-cart">
                 <span className="product-name">{productInCart.name}</span>
@@ -224,21 +244,19 @@ function ProductDet(props) {
                   <span>{colors}</span>
                 </li>
                 <div className="price-cart">
-                  <span><b>{productInCart.price.toLocaleString()}đ</b></span>
-                  <span><button className="delete" onClick={() => props.deleteProduct(productInCart)}><DeleteOutlined /></button></span>
+                  <span><b style={{ color: 'red' }}>{productInCart.price.toLocaleString()}đ</b></span>
+                  <span><button className="delete" style={{ color: 'red' }} onClick={() => props.deleteProduct(productInCart)}><DeleteOutlined /></button></span>
                 </div>
               </div>
             </div>
-
           </div>
         ))}
         <div className="totals">
           <div className="total-item">
             <span><b className="total-title">Tạm tính: </b></span>
-            <span className="total-title">{total.toLocaleString()}đ</span>
+            <span className="total-title" style={{ color: 'red' }}>{total.toLocaleString()}đ</span>
           </div>
         </div>
-
         <div className="buy-now">
           <div className="buy-now-item"><Link to={"/cart"}><button className="view-cart">XEM GIỎ HÀNG</button></Link></div>
         </div>

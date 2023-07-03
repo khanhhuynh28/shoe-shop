@@ -10,7 +10,6 @@ import useDebounce from "../../hook/use-debounce/UseDebounce";
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [valueSearch, setValeSearch] = useState('');
-
   const debounce = useDebounce(valueSearch, 500);
   const inputRef = useRef();
 
@@ -24,12 +23,12 @@ export default function SearchBar() {
     if (!debounce.trim()) {
       return;
     }
-
     dispatch(
       fetchProductList({
         page: 1,
         limit: 12,
-        textSearch: debounce,     })
+        textSearch: debounce,
+      })
     );
   }, [debounce]);
 

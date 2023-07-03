@@ -1,4 +1,3 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchProductList } from "../action/product.action";
 const productInitialState = {
@@ -23,7 +22,7 @@ const productSlice = createSlice({
             state.pagination.page = action.payload.page;
             state.pagination.limit = action.payload.limit;
         },
-        filterCategorys: (state, action) => {
+        filterCategory: (state, action) => {
             state.filter = action.payload;
         },
         sortPrice: (state, action) => {
@@ -51,4 +50,4 @@ const productSlice = createSlice({
 });
 
 export const productReducer = productSlice.reducer;
-export const { filterCategorys, changePagination, sortPrice, postNewdata } = productSlice.actions;
+export const { filterCategory, changePagination, sortPrice } = productSlice.actions;

@@ -5,8 +5,7 @@ import { faBars, faSortDesc } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductList } from "../../../../stores/action/product.action";
 
-export default function Dropdown(props) {
-
+export default function Dropdown() {
   const [valueSort, setValueSort] = useState('');
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.product);

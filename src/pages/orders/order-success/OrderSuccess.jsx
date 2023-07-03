@@ -13,8 +13,6 @@ export function OrderSuccess() {
                     <Button style={{ backgroundColor: "#ff4f04", color: "#fff" }} key="console">
                         <Link to={"/"}> Trang Chủ</Link>
                     </Button>,
-                    <Button key="view-order">Xem Đơn Hàng</Button>,
-
                 ]}
             />
         </div>

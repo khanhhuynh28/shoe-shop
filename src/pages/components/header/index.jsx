@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Logo from "./upperHeader/Logo";
 import SearchBar from "./upperHeader/SearchBar";
 import CartIcon from "./upperHeader/CartIcon";
 import LoginButton from "./upperHeader/LoginButton";
 import NavigationMenu from "./downHeader/NavigationMenu";
 import "./upperHeader/upperHeader.css";
-import Dropdown from "./downHeader/Dropdown";
 
 const Header = () => {
-
 
   return (
     <>

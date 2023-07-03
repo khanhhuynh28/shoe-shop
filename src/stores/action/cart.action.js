@@ -6,6 +6,7 @@ export const buyProduct = (product) => {
         payload: product,
     }
 };
+
 export const deleteProduct = (product) => {
     return {
         type: DELETE_PRODUCT,

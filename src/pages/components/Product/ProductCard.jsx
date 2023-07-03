@@ -1,18 +1,16 @@
-import { Rate } from "antd";
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBIcon, MDBRow } from "mdb-react-ui-kit";
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCol } from "mdb-react-ui-kit";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-export default function ProductCard({ id, sold, name, price, brand, category, thumbnail, cost }) {
-  const star = () => <Rate allowHalf defaultValue={3.5} />
+export default function ProductCard(props) {
 
   return (
     <>
       <MDBCol md="12" lg="3" className="mb-4 mb-lg-0" >
         <MDBCard className="container-card">
-          <Link to={`/product/${id}`}>
+          <Link to={`/product/${props.id}`}>
             <MDBCardImage
-              src={thumbnail}
+              src={props.thumbnail}
               position="top"
               alt="giày"
             />
@@ -21,17 +19,16 @@ export default function ProductCard({ id, sold, name, price, brand, category, th
               <div className="d-flex justify-content-between" style={{ height: "25px" }}>
                 <p className="small">
                   <a href="#!" className="text-muted">
-                    {category}
+                    {props.category}
                   </a>
                 </p>
                 <p className="small text-danger">
-                  <s>{cost.toLocaleString()}đ</s>
+                  <s>{props.cost.toLocaleString()}đ</s>
                 </p>
               </div>
-
               <div className="d-flex justify-content-between">
-                <p className="mb-0">{name}</p>
-                <p className="mb-0 text-danger">{price.toLocaleString()}đ</p>
+                <p className="mb-0">{props.name}</p>
+                <p className="mb-0 text-danger">{props.price.toLocaleString()}đ</p>
               </div>
             </MDBCardBody>
           </Link>

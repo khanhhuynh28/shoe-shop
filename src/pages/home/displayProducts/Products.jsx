@@ -13,13 +13,13 @@ export default function Products() {
 
   useEffect(() => {
     dispatch(fetchProductList({ page: 1, limit: 12 }));
+    window.scrollTo(0, 0);
   }, []);
 
   return <div className='home-products'>
-
     <div className='products'>
       {
-        productList.map((item) => <ProductCard key={item.id} id={item.id} options={item.options} cost={item.cost} name={item.name} price={item.price} brand={item.brand} category={item.category} sold={item.sold} thumbnail={item.thumbnail} />)
+        productList.map((item) => <ProductCard key={item.id} {...item} />)
       }
     </div>
     <div className='pagination'>
@@ -27,6 +27,7 @@ export default function Products() {
         onChange={(page, pageSize) => {
           dispatch(fetchProductList({ page: page, limit: pageSize }));
           dispatch(changePagination({ page, limit: pageSize }));
+          window.scrollTo(0, 0);
         }}
         current={Number(productPagination.page)}
         total={Number(productPagination.total)}

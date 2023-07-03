@@ -9,6 +9,7 @@
 }
 
 .detail {
+    width: 225px;
     display: flex;
     justify-content: space-between;
     padding: 5px;
@@ -16,7 +17,10 @@
 
 .name-product {
     font-size: 14px;
-    flex-wrap: nowrap;
+    margin-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .price-product {

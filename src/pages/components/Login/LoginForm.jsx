@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./LoginForm.css";
 import { Link, Navigate } from "react-router-dom";
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import { Button, Checkbox, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../../stores/action/auth.action";
-function LoginForm(props) {
+import "./LoginForm.css";
+function LoginForm() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const [formLogin, setFormLogin] = useState({
@@ -36,23 +36,18 @@ function LoginForm(props) {
     const setLocalStorageLogin = JSON.stringify(newForm)
     localStorage.setItem('login', setLocalStorageLogin)
     return setLocalStorageLogin
-
   };
+  window.scrollTo(0, 0);
 
   return (
     <>
       <div className="container-login">
-
-
         <MDBContainer className="my-0">
-
           <MDBCard>
             <MDBRow className='g-0'>
-
               <MDBCol md='6'>
                 <MDBCardImage src='https://www.chuphinhsanpham.vn/wp-content/uploads/2021/06/chup-hinh-giay-dincox-shoes-c-photo-studio-4.jpg' alt="login form" className='rounded-start w-100' />
               </MDBCol>
-
               <MDBCol md='6'>
                 <MDBCardBody className='d-flex flex-column'>
                   <h3 className="login-title">Đăng nhập</h3>
@@ -103,7 +98,6 @@ function LoginForm(props) {
                         <Form.Item name="remember" valuePropName="checked" noStyle>
                           <Checkbox>Nhớ mật khẩu</Checkbox>
                         </Form.Item>
-
                         <a className="login-form-forgot" href="">
                           Quên mật khẩu?
                         </a>
@@ -116,7 +110,6 @@ function LoginForm(props) {
                         Hoặc <Link to={"/register"}>Đăng ký!</Link>
                       </Form.Item>
                     </Form>
-
                     <div className="icon">
                       <p>Hoặc sử dụng</p>
                       <ul>
@@ -134,10 +127,8 @@ function LoginForm(props) {
                   </div>
                 </MDBCardBody>
               </MDBCol>
-
             </MDBRow>
           </MDBCard>
-
         </MDBContainer>
       </div>
     </>

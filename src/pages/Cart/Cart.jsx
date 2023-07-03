@@ -42,12 +42,10 @@ function Cart(props) {
 
   const totals = productInCart.reduce((item, product, index) => {
     const total = product.price * itemCount[index];
-
     return item + total
   }, 0)
   console.log(totals.total)
   const totalPayments = totals;
-
 
   const layout = {
     labelCol: {
@@ -87,10 +85,9 @@ function Cart(props) {
       }
     ))
   };
-
+  window.scrollTo(0, 0);
   return (
     <>
-
       {productInCart.length === 0 ? (
         <>
           <div className='cart-is-empty'>
@@ -253,15 +250,11 @@ function Cart(props) {
                 </Form.Item>
               </Form>
             </div>
-
           </div>
-
         </>
       )}
-
     </>
   )
-
 }
 const mapStateToProps = (state) => {
   return {

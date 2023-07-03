@@ -18,12 +18,10 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(loginAction.pending, (state) => {
             state.loadingLogin = true;
-
         });
         builder.addCase(registerAction.pending, (state) => {
             state.loadingRegister = true;
         });
-
         builder.addCase(loginAction.fulfilled, (state, action) => {
             state.loadingLogin = false;
             state.accessToken = action.payload.accessToken;
@@ -36,7 +34,6 @@ const authSlice = createSlice({
                     duration: 0.3,
                 })
                 .then(() => message.success('Đăng nhập thành công', 1.5))
-
         });
         builder.addCase(registerAction.fulfilled, (state) => {
             state.loadingRegister = false;
@@ -49,7 +46,6 @@ const authSlice = createSlice({
                 })
                 .then(() => message.success('Đăng ký thành công', 1.5))
         });
-
         builder.addCase(loginAction.rejected, (state) => {
             state.loadingLogin = false;
             message

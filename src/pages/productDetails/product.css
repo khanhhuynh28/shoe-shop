@@ -116,7 +116,39 @@ body {
   color: #fff;
 }
 
+.suggested-product {
+  position: relative;
+}
 
+.suggested-product-item {
+  overflow-x: auto;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.scroll-suggested {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.scroll-left-button {
+  position: absolute;
+  left: 0;
+  top: 160px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  ;
+}
+
+.scroll-right-button {
+  position: absolute;
+  right: 0;
+  top: 160px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  ;
+}
 
 .pd-wrap {
   padding: 40px 0;

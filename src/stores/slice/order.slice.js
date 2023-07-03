@@ -23,8 +23,6 @@ const orderSlice = createSlice({
             .addCase(orderAction.rejected, (state) => {
                 state.loadingOrder = true;
             })
-
-
     },
 });
 

@@ -1,10 +1,6 @@
-
 import React from 'react';
 import './NotFound.css'
 import { Link } from 'react-router-dom';
-
-
-
 
 const NotFound = () => {
     return (
@@ -16,9 +12,7 @@ const NotFound = () => {
             </div>
             <div>
                 <img className='imgerror' src="" alt="404" />
-
             </div>
-
         </div>
     )
 }

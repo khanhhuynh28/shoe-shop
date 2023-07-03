@@ -71,10 +71,9 @@ function Register() {
     };
 
     const onFinish = () => {
-        const { nickname, email, address, phone, password } = getDataRegister;
+        const { email, address, phone, password } = getDataRegister;
         dispatch(
             registerAction({
-                nickname: nickname,
                 email: email,
                 phone: phone,
                 address: address,
@@ -82,12 +81,13 @@ function Register() {
             })
         )
     };
+    window.scrollTo(0, 0);
     return (
         <>
             <MDBContainer fluid className='d-flex align-items-center justify-content-center bg-image' style={{ backgroundImage: 'url(https://www.elleman.vn/wp-content/uploads/2018/08/13/gi%C3%A0y-sneakers-2-elle-man-8.jpg)' }}>
                 <div className='mask gradient-custom-3'></div>
                 <MDBCard className='m-3' style={{ maxWidth: '900px' }}>
-                    <MDBCardBody style={{ width: "400px" }}>
+                    <MDBCardBody style={{ width: "400px", height: '500px' }}>
                         <h3 className="titleRegister">Đăng ký</h3>
                         <Form
                             {...formItemLayout}
@@ -99,27 +99,10 @@ function Register() {
                             }}
                             style={{
                                 maxWidth: 600,
+                                marginTop: 30
                             }}
                             scrollToFirstError
                         >
-                            <Form.Item
-                                name="nickname"
-                                tooltip="What do you want others to call you?"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Vui lòng nhập họ và tên!',
-                                        whitespace: true,
-                                    },
-                                ]}
-                            >
-                                <Input
-                                    placeholder="Họ và tên"
-                                    name="nickname"
-                                    width="100%"
-                                    onChange={handleChangeRegister}
-                                />
-                            </Form.Item>
                             <Form.Item
                                 name="email"
                                 rules={[
@@ -132,7 +115,6 @@ function Register() {
                             >
                                 <Input placeholder="Email" name="email" onChange={handleChangeRegister} />
                             </Form.Item>
-
                             <Form.Item
                                 name="phone"
                                 rules={[
@@ -192,8 +174,6 @@ function Register() {
                                     onChange={handleChangeRegister}
                                 />
                             </Form.Item>
-
-
                             <Form.Item
                                 name="agreement"
                                 valuePropName="checked"

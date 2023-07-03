@@ -17,18 +17,13 @@ export default function LoginButton(props) {
         !isLogin ? (
           <Link to={"/login"}>
             <button type="button" className="login__btn" >Đăng nhập</button>
-          </Link>
-
-        ) : (isLogin?.map((acc, index) =>
-          <div key={index}>
-            <button className="login__btn" >{acc.email.split("@")[0]}</button>
-            <a href="/"><button className="login__btn logout" onClick={deleteLocalHandler}>Đăng Xuất</button></a>
-          </div>
-        )
-        )
-
+          </Link>) : (isLogin?.map((acc, index) => (
+            <div key={index}>
+              <button className="login__btn" >{acc.email.split("@")[0]}</button>
+              <a href="/"><button className="login__btn logout" onClick={deleteLocalHandler}>Đăng Xuất</button></a>
+            </div>
+          )))
       }
-
     </>
   );
 }

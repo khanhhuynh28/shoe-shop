@@ -1,30 +1,45 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchProductList } from "../../../stores/action/product.action";
 import "./style.css"
-function Suggested({ id, name, thumbnail, price }) {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchProductList({ page: 1, limit: 5 }));
-    }, [])
-    return (
-        <div className="container-suggested">
-            < Link to={`/product/${id}`}>
-                <ul className="suggested" >
-                    <li className="suggested-product">
-                        <div>
-                            <img src={thumbnail} alt="" width={225} />
-                            <div className="detail">
-                                <span className="name-product">{name}</span>
-                                <span className="price-product">{price.toLocaleString()}đ</span>
-                            </div>
-                        </div>
-                    </li>
+function Suggested({ category }) {
+    const [recommended, setRecommended] = useState([]);
 
-                </ul >
-            </ Link>
-        </div>
+    useEffect(() => {
+        fetch('http://localhost:3001/api/products')
+            .then(response => response.json())
+            .then(data => {
+                console.log('sd', data.category)
+                const gender = category;
+                console.log('gender', gender)
+                const filteredProducts = data.filter(product => product.category === gender);
+                console.log('dm', filteredProducts)
+                setRecommended(filteredProducts);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }, []);
+
+    return (
+        <>
+            {recommended.map(item =>
+                <div key={item.id} className="container-suggested">
+                    < Link to={`/product/${item.id}`}>
+                        <ul className="suggested" >
+                            <li className="suggested-product">
+                                <div>
+                                    <img src={item.thumbnail} alt="" width={225} />
+                                    <div className="detail">
+                                        <span className="name-product">{item.name}</span>
+                                        <span className="price-product">{item.price.toLocaleString()}đ</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul >
+                    </ Link>
+                </div>
+            )}
+        </>
 
     );
 }
