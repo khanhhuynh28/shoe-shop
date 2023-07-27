@@ -8,7 +8,7 @@ import { Button, Form, Input } from 'antd';
 import { orderAction } from '../../stores/action/order.action';
 import { Link } from 'react-router-dom';
 import iconCart from "../../assets/giỏ hàng trống.png"
-import { SelectAddress } from './select-address/SelectAddress';
+import { SelectAddress } from './SelectAddress/SelectAddress';
 function Cart(props) {
   const productInCart = useSelector(state => state.cart.cart);
   const [itemCount, setItemCount] = useState(productInCart.map(() => 1));
@@ -44,7 +44,6 @@ function Cart(props) {
     const total = product.price * itemCount[index];
     return item + total
   }, 0)
-  console.log(totals.total)
   const totalPayments = totals;
 
   const layout = {
@@ -56,12 +55,11 @@ function Cart(props) {
     },
   };
 
-  const validateMessages = {
-    required: 'Vui lòng nhập ${label}!',
-  };
+
   const { username, phone, address } = userInfo;
 
   const handleChangeOrder = () => {
+    console.log('validate')
     dispatch(orderAction(
       {
         username: username,
@@ -85,7 +83,10 @@ function Cart(props) {
       }
     ))
   };
-  window.scrollTo(0, 0);
+  // window.scrollTo(0, 0);
+  const validateMessages = {
+    required: 'Vui lòng nhập ${label}!',
+  };
   return (
     <>
       {productInCart.length === 0 ? (
@@ -94,7 +95,7 @@ function Cart(props) {
             <img className='cart-is-empty__icon' src={iconCart} alt="" />
           </div>
           <div className='buy-nows'>
-            <button className='buy-product'><Link to={"/"}> Mua Ngay</Link></button>
+            <Link className='buy-product' to={"/"}> Mua Ngay</Link>
           </div>
         </>
       ) : (
@@ -135,8 +136,7 @@ function Cart(props) {
                           </div>
                         </div>
                         <div className="price__product">{(product.price * itemCount[index]).toLocaleString()}đ</div>
-                        <div className="remove__icon"> <i className="fa-
-                    solid fa-trash-can"></i></div>
+                        <div className="remove__icon"> <i className="fa-solid fa-trash-can"></i></div>
                       </div>
                       <div className='delete-icon' onClick={() => props.deleteProduct(product)}><DeleteOutlined style={{ color: "red" }} /></div>
                     </div>
@@ -165,8 +165,8 @@ function Cart(props) {
                 </div>
                 <hr />
                 <div className='total-items'>
-                  <span className='total-title'>Tổng:</span>
-                  <span className='total-title'>{totalPayments.toLocaleString()}đ</span>
+                  <span className='total-title' style={{ color: 'red', fontSize: '21px' }}>Tổng:</span>
+                  <span className='total-title' style={{ color: 'red', fontSize: '21px' }}>{totalPayments.toLocaleString()}đ</span>
                 </div>
               </div>
             </div>
@@ -196,7 +196,8 @@ function Cart(props) {
                   ]}
                 >
                   <Input
-                    name='username' onChange={handleChangeUserInfor}
+                    name='username'
+                    onChange={handleChangeUserInfor}
                   />
                 </Form.Item>
 
@@ -210,7 +211,8 @@ function Cart(props) {
                   ]}
                 >
                   <Input
-                    name='phone' onChange={handleChangeUserInfor}
+                    name='phone'
+                    onChange={handleChangeUserInfor}
                   />
                 </Form.Item>
                 <Form.Item
@@ -232,7 +234,7 @@ function Cart(props) {
                     offset: 20,
                   }}
                 >
-                  {validateMessages ? (
+                  {validateMessages.length !== '' ? (
                     <Button className='form-submit' htmlType="submit">
                       <Link to={"/order-success"}>Đặt Hàng</Link>
                     </Button>
@@ -240,7 +242,7 @@ function Cart(props) {
                     <Button className='form-submit' htmlType="submit"
                       rules={[
                         {
-                          required: true,
+                          required: false,
                         },
                       ]}
                     >

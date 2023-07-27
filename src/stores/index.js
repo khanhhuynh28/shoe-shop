@@ -8,7 +8,7 @@ const rootReducer = {
     auth: authReducer,
     product: productReducer,
     cart: cartReducer,
-    order: orderReducer
+    order: orderReducer,
 };
 
 export const store = configureStore({

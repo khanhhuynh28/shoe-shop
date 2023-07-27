@@ -1,0 +1,44 @@
+.drop-category {
+    display: flex;
+    align-items: center;
+}
+
+.select__wrapper {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 0 0.5rem;
+    width: 13rem;
+}
+
+.select_categories {
+    border: none;
+    background-color: #f8f8f8;
+    width: 10rem;
+    height: 2.75rem;
+}
+
+.select_categories:focus {
+    outline: none;
+}
+
+.burger__menu {
+    font-size: 0.9rem;
+    margin-right: 15px;
+}
+
+.filter-submit {
+    width: 60px;
+    height: 44px;
+    background-color: #ff4f04;
+    color: #f8f8f8;
+    border-radius: 5px;
+    margin-left: 5px;
+
+}
+
+.title-filter {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

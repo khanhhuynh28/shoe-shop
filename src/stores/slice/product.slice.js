@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchProductList } from "../action/product.action";
+import { fetchProductList, fetchProductListByPriceRange } from "../action/product.action";
 const productInitialState = {
     product: [],
     fetchingProductList: true,
@@ -29,25 +29,29 @@ const productSlice = createSlice({
             state.sort.sort = action.payload.sort;
             state.sort.order = action.payload.order;
         },
+
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchProductList.pending, (state) => {
-            state.fetchingProductList = true;
-        });
-        builder.addCase(fetchProductList.fulfilled, (state, action) => {
-            const { textSearch, filter } = action.payload;
-            state.fetchingProductList = false;
-            state.product = action.payload.product;
-            state.pagination = action.payload.pagination;
-            state.textSearch = textSearch;
-            state.filter = filter;
-            state.sort = action.payload;
-        });
-        builder.addCase(fetchProductList.rejected, (state) => {
-            state.fetchingProductList = false;
-        });
+        builder
+            .addCase(fetchProductList.pending, (state) => {
+                state.fetchingProductList = true;
+            })
+            .addCase(fetchProductList.fulfilled, (state, action) => {
+                const { textSearch, filter } = action.payload;
+                state.fetchingProductList = false;
+                state.product = action.payload.product;
+                state.pagination = action.payload.pagination;
+                state.textSearch = textSearch;
+                state.filter = filter;
+                state.sort = action.payload;
+            })
+            .addCase(fetchProductList.rejected, (state) => {
+                state.fetchingProductList = false;
+            })
     },
 });
 
+
+
 export const productReducer = productSlice.reducer;
-export const { filterCategory, changePagination, sortPrice } = productSlice.actions;
+export const { filterCategory, changePagination, sortPrice, } = productSlice.actions;

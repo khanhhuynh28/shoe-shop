@@ -296,8 +296,7 @@
 }
 
 .buy-product {
-  height: 40px;
-  width: 130px;
+  padding: 10px 20px;
   border: none;
   background-color: #ff4f04;
   color: #fff;

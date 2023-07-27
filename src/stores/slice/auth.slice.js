@@ -27,13 +27,6 @@ const authSlice = createSlice({
             state.accessToken = action.payload.accessToken;
             state.user = action.payload.user;
             state.isLogin = true;
-            message
-                .open({
-                    type: 'loading',
-                    content: 'Đang tải',
-                    duration: 0.3,
-                })
-                .then(() => message.success('Đăng nhập thành công', 1.5))
         });
         builder.addCase(registerAction.fulfilled, (state) => {
             state.loadingRegister = false;

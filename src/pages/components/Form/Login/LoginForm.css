@@ -1,0 +1,65 @@
+.container-login {}
+
+.center {
+  text-align: center;
+}
+
+.form-login {}
+
+.login-form-button {
+  background-color: #ff4f04;
+  color: #fff;
+}
+
+.ant-modal-wrap {
+  width: 100%;
+  height: 100%;
+  padding-left: 100px;
+}
+
+.navigate-home {
+  border: none;
+  background-color: #ff4f04;
+  width: 105px;
+  height: 40px;
+  border-radius: 7px;
+  margin-top: 30px;
+}
+
+.ant-modal-content {
+  width: 350px;
+  height: 150px;
+  text-align: center;
+}
+
+.ant-modal-title {
+  font-weight: 700;
+  font-size: 21px;
+}
+
+.link-home {
+  color: #fff;
+}
+
+.login-title {
+  margin-bottom: 30px;
+}
+
+.icon {
+  text-align: center;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+
+}
+
+li {
+  list-style: none;
+}
+
+.image {
+  padding: 0 20px;
+  margin-top: 20px;
+}

@@ -1,0 +1,31 @@
+/* .filter-product-container {
+    width: 1224px;
+    height: auto;
+} */
+
+/* .filter-product {
+    display: flex;
+    justify-content: center;
+
+} */
+
+
+
+.filter-product-container {
+    width: 100%;
+}
+
+.filter-product {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.container-card:hover {
+    box-shadow: 1px 2px 9px 0 rgb(0 0 0 / 30%);
+}
+
+.container-card {
+    margin: 0 5px 5px 0;
+}

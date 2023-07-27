@@ -1,0 +1,28 @@
+.container-comments {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+
+}
+
+
+
+.comment {
+    /* width: 1024px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.show-comment {
+    margin: 20px 0 0 210px;
+
+}
+
+.content-comment {
+    margin-top: 8px
+}
+
+.feed-back {
+    margin-left: 10px;
+}
