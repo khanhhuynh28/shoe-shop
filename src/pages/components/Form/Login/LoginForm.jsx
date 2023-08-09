@@ -20,7 +20,7 @@ function LoginForm() {
       <Modal open={true} footer={null} closable={false}
         mask={true} maskStyle={{ backgroundColor: 'gray', opacity: 1 }}   >
         <Alert message="Đăng nhập thành công" type="success" showIcon />
-        <button className="navigate-home"><a className="link-home" href="/">Về trang chủ</a></button>
+        <a className="navigate-home" href="/">Về trang chủ</a>
       </Modal>
     </div>
   );
@@ -116,7 +116,7 @@ function LoginForm() {
                         <Button htmlType="submit" className="login-form-button">
                           Đăng nhập
                         </Button>
-                        Hoặc <Link to={"/register"}>Đăng ký!</Link>
+                        Hoặc <Link to={"/register"} className="link-to-register">Đăng ký!</Link>
                       </Form.Item>
                     </Form>
                     <div className="icon">

@@ -9,14 +9,9 @@ const DropCategory = () => {
     const productList = useSelector(state => state.product.product)
     const [selectedRange, setSelectedRange] = useState('');
     const dispatch = useDispatch();
-    const filterProduct = useSelector(state => state.product.filter)
-
-    console.log(filterProduct, 'filterProduct')
     const handleChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedRange(selectedValue);
-        console.log(selectedValue, 'selectedValue')
-        console.log(setSelectedRange, 'setSelectedRange')
     };
 
     useEffect(() => {

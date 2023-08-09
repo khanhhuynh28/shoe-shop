@@ -9,21 +9,43 @@
 .login-form-button {
   background-color: #ff4f04;
   color: #fff;
+  border: 1px solid red;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.login-form-button:hover {
+  background-color: #fff;
 }
 
 .ant-modal-wrap {
   width: 100%;
   height: 100%;
-  padding-left: 100px;
+  padding-left: 150px;
 }
 
 .navigate-home {
-  border: none;
+  border: 1px solid #ff4f04;
   background-color: #ff4f04;
-  width: 105px;
-  height: 40px;
+  padding: 10px 15px;
   border-radius: 7px;
-  margin-top: 30px;
+  position: relative;
+  bottom: -26px;
+  font-size: 16px;
+  color: #fff;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.navigate-home:hover {
+  background-color: #fff;
+  color: #ff4f04;
 }
 
 .ant-modal-content {
@@ -37,9 +59,7 @@
   font-size: 21px;
 }
 
-.link-home {
-  color: #fff;
-}
+
 
 .login-title {
   margin-bottom: 30px;
@@ -62,4 +82,5 @@ li {
 .image {
   padding: 0 20px;
   margin-top: 20px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
 }

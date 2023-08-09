@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchProductList, fetchProductListByPriceRange } from "../action/product.action";
+import { fetchProductList } from "../action/product.action";
 const productInitialState = {
     product: [],
     fetchingProductList: true,
@@ -54,4 +54,4 @@ const productSlice = createSlice({
 
 
 export const productReducer = productSlice.reducer;
-export const { filterCategory, changePagination, sortPrice, } = productSlice.actions;
+export const { filterCategory, changePagination, sortPrice, incrementProduct } = productSlice.actions;

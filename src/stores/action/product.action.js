@@ -15,8 +15,8 @@ export const fetchProductList = createAsyncThunk(
             order,
 
         );
+        console.log(page, 'res')
         return {
-
             product: response.data,
             textSearch: textSearch,
             filter: filter,

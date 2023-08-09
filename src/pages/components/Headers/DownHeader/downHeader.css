@@ -21,7 +21,7 @@
   outline: none;
 }
 
-.naviagtion__menu {
+.navigation__menu {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -32,19 +32,21 @@
   font-weight: lighter;
 }
 
-.naviagtion__menu li {
+.navigation__menu li {
   margin-right: 4rem;
   font-size: 0.9rem;
   cursor: pointer;
 }
 
-.naviagtion__menu li:hover {
+.home__selected:hover {
   color: #ff4f04;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .home__selected {
-  color: #ff4f04;
-  text-decoration: underline;
+  color: #4f4f4f;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
 }

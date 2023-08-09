@@ -6,6 +6,11 @@
   font-family: Poppins;
 }
 
+.logo-container {
+  margin-right: 8rem;
+  width: 9rem;
+}
+
 .logo {
   width: 5rem;
   height: 5rem;
@@ -73,23 +78,34 @@ input:focus {
 }
 
 .login__btn {
-  width: auto;
-  height: 3rem;
+  padding: 10px 15px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid #ff4f04;
   color: white;
   background-color: #ff4f04;
   font-size: 1.1rem;
-  padding: 0 5px;
+  margin-left: 10px;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.login__btn:hover {
+  background-color: #fff;
+  color: #ff4f04;
+}
+
+.link-to-register:hover {
+  color: #ff4f04;
 }
 
 .logout {
   margin-left: 5px;
 }
 
-.link-style {
-  color: white;
-}
+
 
 .id-user {
   display: flex;

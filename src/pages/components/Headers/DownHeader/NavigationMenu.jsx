@@ -32,10 +32,10 @@ export default function NavigationMenu() {
         }
     ]
     return (
-        <ul className="naviagtion__menu">
+        <ul className="navigation__menu">
             <li><Link to={"/"} className="home__selected">Trang Chủ</Link></li>
             {Menu.map((item) => (
-                <li key={item.id} onClick={() => filterCategory(item.category)}>{item.shoeType}</li>
+                <li key={item.id} onClick={() => filterCategory(item.category)}><Link to={"/"} className="home__selected">{item.shoeType}</Link></li>
             ))}
         </ul>
     )

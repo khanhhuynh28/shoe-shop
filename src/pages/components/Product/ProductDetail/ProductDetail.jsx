@@ -52,16 +52,12 @@ function ProductDetail(props) {
   };
 
   const buyNow = (e) => {
-    console.log('1')
     if (isLogin) {
-      console.log('2')
       setNavCart(true)
       if (colors && checkSize) {
-        console.log('3')
         setNavCart(true)
         props.buyProduct(product_current)
       } else {
-        console.log('4')
         e.preventDefault()
         setNavCart(false)
         warning()
@@ -76,9 +72,9 @@ function ProductDetail(props) {
     setOpen(false);
   };
 
-  const product_current = productDetail.map(({ id, price, thumbnail, name, rating }) => (
+  const product_current = productDetail.map(({ id, price, thumbnail, name, rating, quantity }) => (
     {
-      id, price, thumbnail, name, colors, checkSize, rating
+      id, price, thumbnail, name, colors, checkSize, rating, quantity
     }
   ))[0];
 

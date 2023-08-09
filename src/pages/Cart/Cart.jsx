@@ -59,7 +59,6 @@ function Cart(props) {
   const { username, phone, address } = userInfo;
 
   const handleChangeOrder = () => {
-    console.log('validate')
     dispatch(orderAction(
       {
         username: username,

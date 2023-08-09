@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./downHeader.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSortDesc } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductList } from "../../../../stores/action/product.action";
 

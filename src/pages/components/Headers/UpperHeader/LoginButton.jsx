@@ -16,9 +16,10 @@ export default function LoginButton() {
     <>
       {
         !isLogin ? (
-          <button type="button" className="login__btn" >
-            <Link className="link-style" to={"/login"}>Đăng nhập</Link>/ <Link className="link-style" to={"/register"}>Đăng ký</Link>
-          </button>
+          <div>
+            <Link className=" login__btn" to={"/login"}>Đăng nhập</Link>
+            <Link className="login__btn" to={"/register"}>Đăng ký</Link>
+          </div>
         ) : (isLogin?.map((acc, index) => (
           <div key={index} className="id-user">
             <h5 className="username" >{acc.email.split("@")[0]}</h5>

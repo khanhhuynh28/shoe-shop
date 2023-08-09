@@ -181,7 +181,7 @@ function Register() {
                                 {...tailFormItemLayout}
                             >
                                 <Checkbox>
-                                    Tôi đã đọc <a href="">điều khoản</a>
+                                    Tôi đã đọc <a className='navigate-login' href="">điều khoản</a>
                                 </Checkbox>
                             </Form.Item>
                             <Form.Item {...tailFormItemLayout}>
@@ -190,7 +190,7 @@ function Register() {
                                 </Button>
                             </Form.Item>
                             <div className='nav-login'>
-                                <p>Bạn đã có tài khoản?<Link to={"/login"}><button className='navigate-login'>Đăng nhập!</button></Link></p>
+                                <p>Bạn đã có tài khoản?<Link className='navigate-login' to={"/login"}>Đăng nhập!</Link></p>
                             </div>
                         </Form>
                     </MDBCardBody>
