@@ -9,7 +9,7 @@ import { store } from './stores';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 document.title = "Shoe Store";
-  
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>

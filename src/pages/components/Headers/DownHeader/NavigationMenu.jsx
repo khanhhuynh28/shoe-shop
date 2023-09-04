@@ -29,7 +29,8 @@ export default function NavigationMenu() {
             id: 2,
             shoeType: "Giày Nữ",
             category: "Giày Nữ"
-        }
+        },
+
     ]
     return (
         <ul className="navigation__menu">

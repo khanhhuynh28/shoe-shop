@@ -5,8 +5,9 @@ import LoginButton from "./UpperHeader/LoginButton";
 import "./style.css";
 import SearchBar from "./UpperHeader/SearchBar";
 import NavigationMenu from "./DownHeader/NavigationMenu";
-
-const Header = () => {
+import { MoonStars, Sun } from "tabler-icons-react";
+import { ActionIcon } from "@mantine/core";
+const Header = ({ toggleColorScheme, colorScheme }) => {
 
   return (
     <>

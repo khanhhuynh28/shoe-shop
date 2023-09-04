@@ -15,6 +15,7 @@ export const productAPI = {
             ...(filterString !== '' ? [filterString] : []),
             ...(sortString !== '' ? [sortString] : []),
         ].join('&');
+        console.log(API.get(`${BASE_URL}/products?${queryString}`, 'get'))
         return API.get(`${BASE_URL}/products?${queryString}`);
     }
 

@@ -1,29 +1,36 @@
 
 import './Cart.css'
 import React, { useState } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { deleteProduct } from '../../stores/action/cart.action';
+import { useDispatch, useSelector } from 'react-redux';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { orderAction } from '../../stores/action/order.action';
 import { Link } from 'react-router-dom';
 import iconCart from "../../assets/giỏ hàng trống.png"
 import { SelectAddress } from './SelectAddress/SelectAddress';
+import { deleteProduct } from '../../stores/slice/cart.slice';
 function Cart(props) {
   const productInCart = useSelector(state => state.cart.cart);
   const [itemCount, setItemCount] = useState(productInCart.map(() => 1));
   const dispatch = useDispatch();
+  const [validate, setValidate] = useState(false)
   const [userInfo, setUserInfo] = useState({
     username: "",
     phone: "",
     address: ""
   });
+
+
   const handleChangeUserInfor = (e) => {
     const { value, name } = e.target;
     setUserInfo({
       ...userInfo,
       [name]: value,
     });
+    if (username !== "" &&
+      phone !== "" &&
+      address !== "") return setValidate(true)
+
   };
 
   const handleDecrease = (index) => {
@@ -82,10 +89,15 @@ function Cart(props) {
       }
     ))
   };
-  // window.scrollTo(0, 0);
-  const validateMessages = {
+
+  let validateMessages = {
     required: 'Vui lòng nhập ${label}!',
   };
+
+  const handleDeleteProduct = (product) => {
+    dispatch(deleteProduct(product));
+  };
+
   return (
     <>
       {productInCart.length === 0 ? (
@@ -119,8 +131,17 @@ function Cart(props) {
                     <div className="tools">
                       <div className="product__name__description">
                         <p>{product.name}</p>
-                        <p className="product__description">Màu sắc:  {product.colors}</p>
-                        <p className="product__description">Kích cỡ: {product.checkSize}</p>
+                        <div className='order-color'>
+                          <span className="product__description">Màu sắc: </span>
+                          <div
+                            className='order-product-color'
+                            style={product.colors ? {
+                              backgroundColor: product.colors,
+                              border: '2px solid red'
+                            } : { backgroundColor: product.colors, border: '2px solid red' }}></div>
+                        </div>
+                        <p className="product__description">Kích cỡ:
+                          <span className='order-check-size'> {product.checkSize}</span></p>
                       </div>
                       <div className="tools2">
                         <div className="btnnnn">
@@ -137,7 +158,7 @@ function Cart(props) {
                         <div className="price__product">{(product.price * itemCount[index]).toLocaleString()}đ</div>
                         <div className="remove__icon"> <i className="fa-solid fa-trash-can"></i></div>
                       </div>
-                      <div className='delete-icon' onClick={() => props.deleteProduct(product)}><DeleteOutlined style={{ color: "red" }} /></div>
+                      <div className='delete-icon' onClick={() => handleDeleteProduct(product)}><DeleteOutlined style={{ color: "red" }} /></div>
                     </div>
                   </div>
                 </div>
@@ -233,11 +254,8 @@ function Cart(props) {
                     offset: 20,
                   }}
                 >
-                  {validateMessages.length !== '' ? (
-                    <Button className='form-submit' htmlType="submit">
-                      <Link to={"/order-success"}>Đặt Hàng</Link>
-                    </Button>
-                  ) : (
+                  {validate === false ? (
+
                     <Button className='form-submit' htmlType="submit"
                       rules={[
                         {
@@ -246,6 +264,16 @@ function Cart(props) {
                       ]}
                     >
                       Đặt Hàng
+                    </Button>
+                  ) : (
+                    <Button className='form-submit' htmlType="submit"
+                      rules={[
+                        {
+                          required: true,
+                        },
+                      ]}
+                    >
+                      <Link className='order-success' to={"/order-success"}>Đặt Hàng</Link>
                     </Button>
                   )}
                 </Form.Item>
@@ -257,16 +285,6 @@ function Cart(props) {
     </>
   )
 }
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cart.cart,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deleteProduct: (product_current) =>
-      dispatch(deleteProduct(product_current)),
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+
+export default Cart;

@@ -95,6 +95,25 @@
   font-weight: 600;
 }
 
+.order-color {
+  display: flex;
+  align-items: center;
+}
+
+.order-product-color {
+  width: 30px;
+  height: 30px;
+  border-radius: 20%;
+  margin-left: 20px;
+}
+
+.order-check-size {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 25px;
+
+}
+
 .product__name__description {
   /* margin-right: 200px; */
   width: 350px;
@@ -106,6 +125,7 @@
 .product__description {
   font-size: 14px;
   color: rgb(128, 126, 126);
+  margin-top: 10px;
 }
 
 .tools2 {
@@ -305,4 +325,9 @@
 
 .buy-product:hover {
   background-color: #ed8a5f;
+}
+
+.order-success {
+  padding: 12.5px;
+  font-size: 18px;
 }

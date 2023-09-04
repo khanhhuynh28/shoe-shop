@@ -1,33 +1,23 @@
-import { BUY_PRODUCT, DELETE_PRODUCT } from "../../const/const";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const cartInitialState = {
-    cart: [],
-}
-const cartReducer = (state = cartInitialState, action) => {
-    switch (action.type) {
-        case BUY_PRODUCT:
-            {
-                const productInCart = state.cart.find(
-                    (item) => item.id === action.payload.id,
-                );
-                if (!productInCart) {
-                    return {
-                        cart: [...state.cart, action.payload],
-                    }
-                } else {
-                    let newCart = state.cart;
-                    newCart.findIndex(
-                        (obj) => obj.id === action.payload.id
-                    );
+const cartSlice = createSlice({
+    name: "cart",
+    initialState: {
+        cart: [],
+    },
+    reducers: {
+        buyProduct: (state, action) => {
+            const productInCart = state.cart.find((item) => item.id === action.payload.id);
 
-                    return { cart: [...newCart] }
-                }
+            if (!productInCart) {
+                state.cart.push(action.payload);
             }
-        default: return state;
-        case DELETE_PRODUCT:
-            return {
-                cart: state.cart.filter((item) => item.id !== action.payload.id),
-            };
-    }
-}
-export default cartReducer;
+        },
+        deleteProduct: (state, action) => {
+            state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+        },
+    },
+});
+
+export const { buyProduct, deleteProduct } = cartSlice.actions;
+export const cartReducer = cartSlice.reducer;

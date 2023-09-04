@@ -5,7 +5,7 @@ const productInitialState = {
     fetchingProductList: true,
     loadingPostProduct: true,
     pagination: {
-        page: 1,
+        page: 0,
         limit: 12,
         total: 0,
     },
@@ -37,13 +37,14 @@ const productSlice = createSlice({
                 state.fetchingProductList = true;
             })
             .addCase(fetchProductList.fulfilled, (state, action) => {
-                const { textSearch, filter } = action.payload;
+                const { textSearch, filter, sort, order } = action.payload;
                 state.fetchingProductList = false;
                 state.product = action.payload.product;
                 state.pagination = action.payload.pagination;
+                console.log(state.pagination, 'pa')
                 state.textSearch = textSearch;
                 state.filter = filter;
-                state.sort = action.payload;
+                state.sort = { sort, order };
             })
             .addCase(fetchProductList.rejected, (state) => {
                 state.fetchingProductList = false;

@@ -18,8 +18,12 @@ import NotFound from "./pages/components/NotFound/NotFound";
 
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import CombinedFooter from "./pages/components/Footer/CombinedFooter";
+import { useColorScheme, useHotkeys, useLocalStorage } from "@mantine/hooks";
+import { ActionIcon, ColorSchemeProvider, MantineProvider } from "@mantine/core";
+
 
 function App() {
+
   return (
     <>
       <Header />
@@ -36,7 +40,6 @@ function App() {
         <Route path={"/notfound"} component={NotFound} />
       </Routes>
       <CombinedFooter />
-
 
     </>
   );

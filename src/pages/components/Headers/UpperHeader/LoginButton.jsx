@@ -24,7 +24,7 @@ export default function LoginButton() {
           <div key={index} className="id-user">
             <h5 className="username" >{acc.email.split("@")[0]}</h5>
             <a href="/">
-              <img width={35} src={logout} alt="" onClick={deleteLocalHandler} />
+              <img className="icon-logout" width={35} src={logout} alt="" onClick={deleteLocalHandler} />
             </a>
           </div>
         )))

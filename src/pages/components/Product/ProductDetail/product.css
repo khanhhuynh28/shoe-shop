@@ -247,7 +247,7 @@ body {
   justify-content: center;
 }
 
-.product-name {
+.products-name {
   font-size: 22px;
   font-weight: 500;
   line-height: 22px;
@@ -541,4 +541,21 @@ body {
 
 .tab-detail {
   margin-top: 50px;
+}
+
+.check-size {
+  margin-left: 20px;
+  font-weight: 600;
+}
+
+.colors {
+  display: flex;
+  align-items: center;
+}
+
+.drawer-color {
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 20%;
 }

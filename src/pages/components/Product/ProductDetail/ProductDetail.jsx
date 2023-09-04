@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Alert, Drawer, Modal, Radio, Rate, message } from "antd";
 import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { buyProduct, deleteProduct } from "../../../../stores/action/cart.action";
 import Suggested from "./Suggested/Suggested";
 import leftArrow from '../../../../assets/left-arrow.png'
 import rightArrow from '../../../../assets/right-arrow.png'
 import Tab from './Tabs/Tab'
 import "./product.css";
+import { buyProduct, deleteProduct } from "../../../../stores/slice/cart.slice";
 
-function ProductDetail(props) {
+function ProductDetail({ product }) {
   const [options, setOptions] = useState({
     index: 0
   });
@@ -28,6 +28,16 @@ function ProductDetail(props) {
     return useName;
   });
   const [navCart, setNavCart] = useState(true);
+  const dispatch = useDispatch();
+
+  const handleBuyProduct = (product) => {
+    dispatch(buyProduct(product));
+  };
+
+  const handleDeleteProduct = (product) => {
+    dispatch(deleteProduct(product));
+  };
+
 
   const handleSizeChange = (event) => {
     const sizes = event.target.value
@@ -42,21 +52,20 @@ function ProductDetail(props) {
       content: 'hãy chọn kích cỡ và màu sắc',
     });
   };
-  const showDrawer = () => {
+  const showDrawer = (product) => {
     if (colors && checkSize) {
       setOpen(true);
-      props.buyProduct(product_current)
+      handleBuyProduct(product_current)
     } else {
       warning()
     }
   };
-
   const buyNow = (e) => {
     if (isLogin) {
       setNavCart(true)
       if (colors && checkSize) {
         setNavCart(true)
-        props.buyProduct(product_current)
+        handleBuyProduct(product_current)
       } else {
         e.preventDefault()
         setNavCart(false)
@@ -112,7 +121,9 @@ function ProductDetail(props) {
   };
 
 
-  const star = () => <Rate disabled defaultValue={product_current.rating} />
+  const star = () => <Rate disabled
+    defaultValue={product_current.rating}
+  />
   return (
     <>
       {contextHolder}
@@ -139,7 +150,7 @@ function ProductDetail(props) {
               <div className="col-md-6">
                 <div className="product-dtl">
                   <div className="product-info">
-                    <div className="product-name">{product.name}</div>
+                    <div className="products-name">{product.name}</div>
                     <div className="reviews-counter">
                       <div className="rate">
                         {star()}
@@ -274,15 +285,20 @@ function ProductDetail(props) {
                 <span className="product-name">{productInCart.name}</span>
                 <li>
                   <span>Kích cỡ: </span>
-                  <span>{checkSize}</span>
+                  <span className="check-size">{checkSize}</span>
                 </li>
-                <li>
+                <li className="colors">
                   <span>Màu sắc: </span>
-                  <span>{colors}</span>
+                  <div
+                    className="drawer-color"
+                    style={colors === productInCart.colors ? {
+                      backgroundColor: productInCart.colors,
+                      border: '2px solid red'
+                    } : { backgroundColor: productInCart.colors, border: '2px solid red' }}></div>
                 </li>
                 <div className="price-cart">
                   <span><b style={{ color: 'red' }}>{productInCart.price.toLocaleString()}đ</b></span>
-                  <span><button className="delete" style={{ color: 'red' }} onClick={() => props.deleteProduct(productInCart)}><DeleteOutlined /></button></span>
+                  <span><button className="delete" style={{ color: 'red' }} onClick={() => handleDeleteProduct(productInCart)}><DeleteOutlined /></button></span>
                 </div>
               </div>
             </div>
@@ -303,15 +319,5 @@ function ProductDetail(props) {
 
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    buyProduct: (product_current) =>
-      dispatch(buyProduct(product_current)),
-    deleteProduct: (product_current) =>
-      dispatch(deleteProduct(product_current)),
-  };
-};
 
-
-
-export default connect(null, mapDispatchToProps)(ProductDetail);
+export default ProductDetail;

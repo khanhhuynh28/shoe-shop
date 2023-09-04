@@ -7,6 +7,8 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mantine/core": "^6.0.18",
+    "@mantine/hooks": "^6.0.18",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -31,6 +33,7 @@
     "readux": "^1.0.0",
     "router": "^1.3.8",
     "sass": "^1.59.3",
+    "tabler-icons-react": "^1.56.0",
     "thunk": "^0.0.1",
     "use-debounce": "^9.0.4",
     "web-vitals": "^2.1.4"

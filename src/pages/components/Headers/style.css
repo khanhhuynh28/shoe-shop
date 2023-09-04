@@ -30,3 +30,14 @@
     margin-top: 136px;
 
 }
+
+@media only screen and (max-width: 820px) {
+    .Header {
+        max-width: 820px;
+        margin-top: 10px;
+    }
+
+    .upper__header {
+        height: 30px;
+    }
+}

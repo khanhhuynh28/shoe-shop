@@ -15,8 +15,10 @@ const Paging = () => {
 
   const handleChangePage = (page, pageSize) => {
 
-    dispatch(fetchProductList({ page: page, limit: pageSize }));
-    console.log('1')
+    dispatch(
+      fetchProductList({ page: page, limit: pageSize }, console.log('1'))
+    );
+
     scroll()
   }
   const handleChangeSizePage = (page, pageSize) => {
@@ -28,7 +30,7 @@ const Paging = () => {
     console.log('2')
     scroll()
   }
-  console.log(productPagination.page, 'ala')
+
   return (
     <div>
       <Pagination

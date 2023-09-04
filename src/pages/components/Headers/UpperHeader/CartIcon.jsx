@@ -13,7 +13,6 @@ export default function CartIcon(props) {
   useEffect(() => {
     const totalQuantity = quantityProduct.reduce((total, item) => total + item.quantity, 0);
     setQuantity(String(totalQuantity));
-    console.log(totalQuantity)
   }, [quantityProduct]);
 
   return (
