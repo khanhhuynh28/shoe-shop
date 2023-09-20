@@ -1,8 +1,9 @@
 import React from "react";
 import "./home.css";
 function HomeLanding() {
+
   return (
-    <div className="ss">
+    <div className="ss" >
       <header className="home-header">
         <div className="header-info">
           <div className="discount">

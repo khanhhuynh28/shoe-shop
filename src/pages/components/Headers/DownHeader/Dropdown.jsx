@@ -21,7 +21,7 @@ export default function Dropdown() {
         order: valueSort,
       })
     );
-  }, [valueSort, textSearch]);
+  }, [valueSort]);
 
   return (
     <div className="select__wrapper">

@@ -20,8 +20,6 @@ export default function SearchBar() {
   const handleClick = () => {
     dispatch(
       fetchProductList({
-        page: 1,
-        limit: 12,
         textSearch: valueSearch,
       })
     );

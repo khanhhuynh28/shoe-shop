@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Spin } from "antd";
 
 const cartSlice = createSlice({
     name: "cart",
@@ -8,7 +9,6 @@ const cartSlice = createSlice({
     reducers: {
         buyProduct: (state, action) => {
             const productInCart = state.cart.find((item) => item.id === action.payload.id);
-
             if (!productInCart) {
                 state.cart.push(action.payload);
             }

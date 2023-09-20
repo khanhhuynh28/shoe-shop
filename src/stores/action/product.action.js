@@ -16,6 +16,7 @@ export const fetchProductList = createAsyncThunk(
 
         );
         console.log(page, 'res')
+        console.log(limit, 'ad')
         return {
             product: response.data,
             textSearch: textSearch,
@@ -23,7 +24,7 @@ export const fetchProductList = createAsyncThunk(
             sort: sort,
             order: order,
             pagination: {
-                page,
+                page: page,
                 limit,
                 total: response.headers['x-total-count'],
             },

@@ -21,21 +21,19 @@ const Paging = () => {
 
     scroll()
   }
-  const handleChangeSizePage = (page, pageSize) => {
+  // const handleChangeSizePage = (page, pageSize) => {
 
-    dispatch(
-      changePagination({ page: page, limit: pageSize }, console.log('2'))
-
-    );
-    console.log('2')
-    scroll()
-  }
+  //   dispatch(
+  //     changePagination({ page: page, limit: pageSize }, console.log('2'))
+  //   );
+  //   scroll()
+  // }
 
   return (
     <div>
       <Pagination
         onChange={handleChangePage}
-        onShowSizeChange={handleChangeSizePage}
+        // onShowSizeChange={handleChangeSizePage}
         current={Number(productPagination.page)}
         total={Number(productPagination.total)}
         pageSize={Number(productPagination.limit)}

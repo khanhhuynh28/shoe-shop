@@ -127,7 +127,7 @@ function ProductDetail({ product }) {
   return (
     <>
       {contextHolder}
-      <div className="container">
+      <div className="container" >
         {productDetail?.map((product) => (
           <>
             <div key={product.id} className="row" >
@@ -140,7 +140,7 @@ function ProductDetail({ product }) {
                   ))}
                   <div id="thumb" className="owl-carousel product-thumb">
                     {product.options?.map((item, index) => (
-                      <div key={item} className="item">
+                      <div key={item} className="item" >
                         <img className="images" alt="" src={item} onClick={() => handleChangeImage(index)} />
                       </div>
                     ))}
@@ -152,7 +152,7 @@ function ProductDetail({ product }) {
                   <div className="product-info">
                     <div className="products-name">{product.name}</div>
                     <div className="reviews-counter">
-                      <div className="rate">
+                      <div className="rate" >
                         {star()}
                       </div>
                       <span className="span">Đánh giá: {product.stock}</span>
